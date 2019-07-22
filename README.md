@@ -352,3 +352,52 @@ update state. Why? Because for the first `input`, `event.target.name` is set to
 - [Controlled vs Uncontrolled](https://www.sitepoint.com/video-controlled-vs-uncontrolled-components-in-react/) - Video
 
 <p class='util--hide'>View <a href='https://learn.co/lessons/react-forms'>Forms</a> on Learn.co and start learning to code for free.</p>
+```
+import React, { Component } from 'react'
+  
+
+export default class ControlledInput extends Component{
+
+    state = {
+        firstName: "Oscar",
+        lastName: "Rios"
+    }
+
+
+    handleChange = event =>{
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+      handleSubmit = event => {
+        event.preventDefault()
+        this.sendFormDataSomewhere(this.state)
+      }
+
+    
+
+    render() {
+        // console.log(this.state.firstName)
+        console.log(this.state)
+        return (
+            <form onSubmit={e=>this.handleSubmit(e)}>
+                <input 
+                type="text" 
+                id="firstNameInput" 
+                value={this.state.firstName}
+                onChange={this.handleChange}
+                />
+                <input 
+                type="text" 
+                id="lastNameInput" 
+                value={this.state.lastName}
+                onChange={this.handleChange}    
+                />
+            </form>
+        )
+    }
+
+}
+
+```
